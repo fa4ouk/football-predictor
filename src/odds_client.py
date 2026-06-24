@@ -1,7 +1,5 @@
 """
 Client pour The Odds API — récupération des cotes ET des scores.
-Les scores utilisent le même identifiant de match que les cotes,
-ce qui rend le croisement trivial et fiable.
 """
 import requests
 from datetime import datetime, timezone, timedelta
@@ -21,9 +19,16 @@ def _get(league_key: str, endpoint: str, extra_params: dict = None) -> list:
         r = requests.get(url, params=params, timeout=30)
         r.raise_for_status()
         remaining = r.headers.get("x-requests-remaining", "?")
-        print(f"  [{league_key}] {endpoint} → {len(r.json().get('data', []))} résultats "
-              f"(reste: {remaining} req)")
-        return r.json().get("data", [])
+        
+        # L'API peut renvoyer une liste ou un dict {"data": [...]}
+        data = r.json()
+        if isinstance(data, list):
+            results = data
+        else:
+            results = data.get("data", [])
+            
+        print(f"  [{league_key}] {endpoint} → {len(results)} résultats (reste: {remaining} req)")
+        return results
     except requests.HTTPError as e:
         print(f"  [{league_key}] ERREUR HTTP {e.response.status_code}: {e}")
         return []
@@ -35,11 +40,6 @@ def _get(league_key: str, endpoint: str, extra_params: dict = None) -> list:
 # ── Cotes ────────────────────────────────────────────────────
 
 def fetch_odds_all_leagues() -> list:
-    """
-    Récupère les cotes de tous les championnats configurés.
-    Filtre les matchs qui commencent dans les prochaines heures.
-    Retourne une liste de matchs avec leurs marchés et bookmakers.
-    """
     now = datetime.now(timezone.utc)
     cutoff = now + timedelta(hours=MATCHES_LOOKAHEAD_HOURS)
     all_matches = []
@@ -67,11 +67,6 @@ def fetch_odds_all_leagues() -> list:
 
 
 def format_odds_for_ai(matches: list) -> list:
-    """
-    Formate les données brutes de l'API en structure lisible
-    pour le prompt de l'IA. Conserve TOUTES les cotes
-    (le modèle décidera de la plage 1.4-2.5).
-    """
     formatted = []
     for m in matches:
         bookmakers = []
@@ -102,10 +97,6 @@ def format_odds_for_ai(matches: list) -> list:
 # ── Scores ───────────────────────────────────────────────────
 
 def fetch_scores_for_leagues(league_keys: list, days_from: int = 3) -> dict:
-    """
-    Récupère les scores pour une liste de championnats.
-    Retourne un dict indexé par match_id pour un lookup O(1).
-    """
     scores_by_id = {}
     for lk in league_keys:
         raw = _get(lk, "scores", {"daysFrom": days_from})
@@ -116,7 +107,6 @@ def fetch_scores_for_leagues(league_keys: list, days_from: int = 3) -> dict:
 
 
 def get_league_keys_with_pending(pending: list) -> list:
-    """Extrait les clés de championnat ayant des pronostics en attente."""
     keys = set()
     for p in pending:
         if p.get("result") in ("pending", None):
