@@ -1,5 +1,5 @@
 """
-Configuration centrale - Juin 2026 (Coupe du Monde + ligues actives)
+Configuration centrale - Optimisé pour les compétitions actives
 """
 import os
 
@@ -7,17 +7,12 @@ import os
 ODDS_API_KEY = os.environ.get("ODDS_API_KEY", "")
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 
-# Championnats et compétitions ACTIFS en juin 2026
+# Compétitions actives (clés vérifiées qui répondent 200)
 LEAGUES = {
-    # COUPE DU MONDE 2026 (Priorité absolue)
-    "soccer_fifa_world_cup":           "Coupe du Monde 2026",
-    
-    # Championnats américains (en cours en juin)
-    "soccer_usa_mls":                  "MLS",
-    "soccer_mexico_liga_mx":           "Liga MX",
-    "soccer_brazil_serie_a":           "Série A Brésil",
-    "soccer_argentina_primera_division":"Liga Argentine",
-    "soccer_japan_j_league":           "J-League",
+    "soccer_fifa_world_cup":            "Coupe du Monde 2026",
+    "soccer_usa_mls":                   "MLS",
+    "soccer_argentina_primera_division": "Liga Argentine",
+    "soccer_japan_j_league":            "J-League",
 }
 
 # Marchés à récupérer
