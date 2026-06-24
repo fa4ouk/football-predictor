@@ -1,1 +1,47 @@
+name: Verify Results
 
+on:
+  schedule:
+    # 4 vérifications/jour couvrant les fenêtres de fin de match
+    # 2h UTC : fin de matches européens du soir précédent
+    # 8h UTC : matches matinaux / africains
+    # 14h UTC : matches de l'après-midi
+    # 20h UTC : matches du soir européen
+    - cron: '0 2,8,14,20 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: football-agent-data
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run verification
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python src/run_verify.py
+
+      - name: Commit data
+        run: |
+          git config user.name "Football Agent Bot"
+          git config user.email "bot@football-agent.local"
+          git add data/
+          git diff --cached --quiet || git commit -m "✅ Verification $(date -u +%Y-%m-%d\ %H:%M)"
+          git push
