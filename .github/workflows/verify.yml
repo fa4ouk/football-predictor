@@ -2,11 +2,6 @@ name: Verify Results
 
 on:
   schedule:
-    # 4 vérifications/jour couvrant les fenêtres de fin de match
-    # 2h UTC : fin de matches européens du soir précédent
-    # 8h UTC : matches matinaux / africains
-    # 14h UTC : matches de l'après-midi
-    # 20h UTC : matches du soir européen
     - cron: '0 2,8,14,20 * * *'
   workflow_dispatch:
 
@@ -31,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      -       - name: Run verification
+      - name: Run verification
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
