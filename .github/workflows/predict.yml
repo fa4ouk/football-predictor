@@ -53,8 +53,7 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          PYTHONPATH: src
-        run: python src/run_predict.py ${{ steps.session.outputs.type }}
+        run: PYTHONPATH=src python src/run_predict.py ${{ steps.session.outputs.type }}
 
       - name: Commit data
         run: |
