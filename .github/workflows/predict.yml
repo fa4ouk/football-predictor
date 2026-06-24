@@ -1,1 +1,68 @@
+name: Generate Predictions
 
+on:
+  schedule:
+    # 9h00 UTC = 10h00 CET (catch les cotes du jour pour matchs du soir)
+    - cron: '0 9 * * *'
+    # 17h00 UTC = 18h00 CET (catch les dernières cotes avant matchs de soirée)
+    - cron: '0 17 * * *'
+  workflow_dispatch:
+    inputs:
+      session_type:
+        description: 'Type de session'
+        required: true
+        default: 'morning'
+        type: choice
+        options:
+          - morning
+          - evening
+
+# Empêche les runs simultanés (predict ET verify) pour éviter
+# les conflits d'écriture sur les fichiers JSON du repo
+concurrency:
+  group: football-agent-data
+  cancel-in-progress: false
+
+jobs:
+  predict:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Determine session type
+        id: session
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "type=${{ inputs.session_type }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "0 9 * * *" ]; then
+            echo "type=morning" >> "$GITHUB_OUTPUT"
+          else
+            echo "type=evening" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run prediction
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python src/run_predict.py ${{ steps.session.outputs.type }}
+
+      - name: Commit data
+        run: |
+          git config user.name "Football Agent Bot"
+          git config user.email "bot@football-agent.local"
+          git add data/
+          git diff --cached --quiet || git commit -m "🤖 ${{ steps.session.outputs.type }} predictions $(date -u +%Y-%m-%d)"
+          git push
