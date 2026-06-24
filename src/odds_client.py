@@ -1,5 +1,7 @@
 """
 Client pour The Odds API — récupération des cotes ET des scores.
+Version optimisée : garde uniquement la meilleure cote par marché
+pour réduire drastiquement le nombre de tokens envoyés à l'IA.
 """
 import requests
 from datetime import datetime, timezone, timedelta
@@ -10,7 +12,6 @@ from config import (
 
 
 def _get(league_key: str, endpoint: str, extra_params: dict = None) -> list:
-    """Requête générique vers The Odds API."""
     url = f"{ODDS_API_BASE}/sports/{league_key}/{endpoint}/"
     params = {"api_key": ODDS_API_KEY}
     if extra_params:
@@ -19,25 +20,17 @@ def _get(league_key: str, endpoint: str, extra_params: dict = None) -> list:
         r = requests.get(url, params=params, timeout=30)
         r.raise_for_status()
         remaining = r.headers.get("x-requests-remaining", "?")
-        
-        # L'API peut renvoyer une liste ou un dict {"data": [...]}
         data = r.json()
-        if isinstance(data, list):
-            results = data
-        else:
-            results = data.get("data", [])
-            
+        results = data if isinstance(data, list) else data.get("data", [])
         print(f"  [{league_key}] {endpoint} → {len(results)} résultats (reste: {remaining} req)")
         return results
     except requests.HTTPError as e:
-        print(f"  [{league_key}] ERREUR HTTP {e.response.status_code}: {e}")
+        print(f"  [{league_key}] ERREUR HTTP {e.response.status_code}")
         return []
     except Exception as e:
         print(f"  [{league_key}] ERREUR: {e}")
         return []
 
-
-# ── Cotes ────────────────────────────────────────────────────
 
 def fetch_odds_all_leagues() -> list:
     now = datetime.now(timezone.utc)
@@ -52,9 +45,7 @@ def fetch_odds_all_leagues() -> list:
         })
         for m in raw:
             try:
-                commence = datetime.fromisoformat(
-                    m["commence_time"].replace("Z", "+00:00")
-                )
+                commence = datetime.fromisoformat(m["commence_time"].replace("Z", "+00:00"))
             except (ValueError, KeyError):
                 continue
             if now < commence < cutoff:
@@ -67,34 +58,51 @@ def fetch_odds_all_leagues() -> list:
 
 
 def format_odds_for_ai(matches: list) -> list:
+    """
+    Extrait UNIQUEMENT la meilleure cote disponible pour chaque outcome.
+    Passe de ~45 000 tokens à ~3 000 tokens.
+    """
     formatted = []
     for m in matches:
-        bookmakers = []
-        for bm in m.get("bookmakers", []):
-            markets = []
-            for mk in bm.get("markets", []):
-                outcomes = [
-                    {"name": o["name"], "price": o.get("price", 0)}
-                    for o in mk.get("outcomes", [])
-                ]
-                if outcomes:
-                    markets.append({"key": mk["key"], "outcomes": outcomes})
-            if markets:
-                bookmakers.append({"name": bm["title"], "markets": markets})
+        best_outcomes = {}
 
-        if bookmakers:
+        for bm in m.get("bookmakers", []):
+            for mk in bm.get("markets", []):
+                market_key = mk["key"]
+                if market_key not in best_outcomes:
+                    best_outcomes[market_key] = {}
+
+                for o in mk.get("outcomes", []):
+                    name = o["name"]
+                    price = o.get("price", 0)
+                    # Garder la cote la plus haute (meilleure pour le parieur)
+                    if name not in best_outcomes[market_key] or price > best_outcomes[market_key][name]["price"]:
+                        best_outcomes[market_key][name] = {
+                            "name": name,
+                            "price": price,
+                            "bookmaker": bm["title"]
+                        }
+
+        # Reconstruire la structure minimale
+        compact_markets = []
+        for mk_key, outcomes in best_outcomes.items():
+            compact_markets.append({
+                "market": mk_key,
+                "outcomes": list(outcomes.values())
+            })
+
+        if compact_markets:
             formatted.append({
                 "id": m["id"],
-                "home_team": m["home_team"],
-                "away_team": m["away_team"],
-                "commence_time": m["commence_time"],
+                "home": m["home_team"],
+                "away": m["away_team"],
+                "time": m["commence_time"],
                 "league": m.get("_league", "?"),
-                "bookmakers": bookmakers,
+                "odds": compact_markets
             })
+            
     return formatted
 
-
-# ── Scores ───────────────────────────────────────────────────
 
 def fetch_scores_for_leagues(league_keys: list, days_from: int = 3) -> dict:
     scores_by_id = {}
