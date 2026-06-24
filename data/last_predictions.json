@@ -1,27 +1,27 @@
 [
   {
-    "id": "536d5265-a8b8-41ce-a98c-bf9455df4186",
-    "session_id": "0973c253-4363-483a-b5bf-dd49cf99d470",
-    "session_type": "morning",
-    "created_at": "2026-06-24T11:50:30.238235+00:00",
+    "id": "d74b801e-6eac-49e8-8e26-6c8d630c9b6a",
+    "session_id": "690b7786-ab72-4bdc-9586-76b9cae60ea8",
+    "session_type": "evening",
+    "created_at": "2026-06-24T18:56:50.114211+00:00",
     "match": {
-      "home_team": "Japan",
-      "away_team": "Sweden",
-      "commence_time": "2026-06-25T23:00:00Z",
+      "home_team": "Ecuador",
+      "away_team": "Germany",
+      "commence_time": "2026-06-25T20:00:00Z",
       "league": "Coupe du Monde 2026",
       "league_key": "soccer_fifa_world_cup",
-      "match_id": "0ed0233bddc4eafc8507f86a9c17b998"
+      "match_id": "0ec28b84ec399bd4dffbe8d1bc72b3c4"
     },
     "selection": {
       "market_key": "h2h",
-      "description": "Victoire du Japon",
-      "outcome_name": "Japan"
+      "description": "Victoire de l'Allemagne",
+      "outcome_name": "Germany"
     },
-    "odds": 1.99,
-    "bookmaker": "GTbets",
-    "category": "OPPORTUNISTE",
-    "expected_value": 0.2,
-    "explanation": "Le Japon a une équipe rapide et technique, ce qui lui donne une bonne chance de vaincre la Suède dans un match serré.",
+    "odds": 1.92,
+    "bookmaker": "Nordic Bet",
+    "category": "VALEUR",
+    "expected_value": 8.1,
+    "explanation": "L'Allemagne est une équipe très forte et devrait gagner contre l'Équateur, qui a des faiblesses en défense.",
     "result": "pending",
     "verified_at": null
   }
