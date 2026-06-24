@@ -1,7 +1,5 @@
 """
-Configuration centrale de l'agent pronostiqueur.
-Toutes les clés API sont lues depuis les variables d'environnement
-(configurées comme Secrets dans GitHub).
+Configuration centrale - Juin 2026 (Coupe du Monde + ligues actives)
 """
 import os
 
@@ -9,23 +7,17 @@ import os
 ODDS_API_KEY = os.environ.get("ODDS_API_KEY", "")
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 
-# Championnats ACTUELS (mis à jour pour l'intersaison été 2025)
-# Les championnats européens reviendront en août 2025
+# Championnats et compétitions ACTIFS en juin 2026
 LEAGUES = {
-    # Championnats américains (jouent actuellement)
+    # COUPE DU MONDE 2026 (Priorité absolue)
+    "soccer_fifa_world_cup":           "Coupe du Monde 2026",
+    
+    # Championnats américains (en cours en juin)
     "soccer_usa_mls":                  "MLS",
-    "soccer_brazil_serie_a":           "Série A Brésil",
     "soccer_mexico_liga_mx":           "Liga MX",
-    # Compétitions internationales estivales
-    "soccer_fifa_club_world_cup":      "Club World Cup 2025",
-    # Amicaux clubs (toujours des matchs dispo en été)
-    "soccer_club_friendlies":          "Matchs Amicaux Clubs",
-    # Championnats européens (actifs en août — garder pour la saison)
-    "soccer_epl":                      "Premier League",
-    "soccer_spain_la_liga":            "La Liga",
-    "soccer_germany_bundesliga":       "Bundesliga",
-    "soccer_italy_serie_a":            "Serie A",
-    "soccer_france_ligue_one":         "Ligue 1",
+    "soccer_brazil_serie_a":           "Série A Brésil",
+    "soccer_argentina_primera_division":"Liga Argentine",
+    "soccer_japan_j_league":           "J-League",
 }
 
 # Marchés à récupérer
