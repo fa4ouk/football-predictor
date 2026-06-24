@@ -31,13 +31,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run verification
+      -       - name: Run verification
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          PYTHONPATH: src
-        run: python src/run_verify.py
+        run: PYTHONPATH=src python src/run_verify.py
 
       - name: Commit data
         run: |
