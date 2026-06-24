@@ -51,7 +51,7 @@ RÈGLES IMPÉRATIVES :
 - Exactement 5 pronostics. Ni plus, ni moins.
 - Un pronostic = un coupon SIMPLE (1 seule sélection, jamais de combiné).
 - Cotes obligatoirement entre {MIN_ODDS} et {MAX_ODDS}.
-- Diversifie les compétitions ET les types de marchés. Ne prends pas 5 sélections sur les 2 mêmes matchs.
+- Diversifie les matchs choisis plutôt que de tout miser sur les 2 mêmes rencontres.
 - Si les opportunités sont faibles, propose quand même tes 5 meilleurs choix mais sois honnête sur la confiance dans l'explication.
 
 CATÉGORIES (assigne exactement l'une des trois) :
@@ -79,8 +79,8 @@ Réponds UNIQUEMENT avec ce JSON valide, ni texte avant ni après :
       "league": "nom de la compétition",
       "commence_time": "date ISO 8601",
       "market_key": "h2h ou totals",
-      "selection_description": "ex: Victoire Arsenal, Plus de 2.5 buts",
-      "outcome_name": "nom exact du outcome dans les données (ex: Arsenal, Over 2.5)",
+      "selection_description": "ex: Victoire Arsenal, Plus de 2.5 buts, Moins de 3.5 buts",
+      "outcome_name": "nom exact du outcome dans les données (ex: Arsenal, Over 2.5, Under 3.5)",
       "odds": 1.85,
       "bookmaker": "nom du bookmaker",
       "category": "ULTRA SAFE ou VALEUR ou OPPORTUNISTE",
