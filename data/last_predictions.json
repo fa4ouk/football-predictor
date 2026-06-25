@@ -1,9 +1,87 @@
 [
   {
-    "id": "d74b801e-6eac-49e8-8e26-6c8d630c9b6a",
-    "session_id": "690b7786-ab72-4bdc-9586-76b9cae60ea8",
-    "session_type": "evening",
-    "created_at": "2026-06-24T18:56:50.114211+00:00",
+    "id": "4d7944c1-c369-4ff0-ab39-57da128ccf37",
+    "session_id": "9ad23088-8a93-4276-8935-cae6e49c42dc",
+    "session_type": "morning",
+    "created_at": "2026-06-25T11:44:58.480439+00:00",
+    "match": {
+      "home_team": "Japan",
+      "away_team": "Sweden",
+      "commence_time": "2026-06-25T23:00:00Z",
+      "league": "Coupe du Monde 2026",
+      "league_key": "soccer_fifa_world_cup",
+      "match_id": "0ed0233bddc4eafc8507f86a9c17b998"
+    },
+    "selection": {
+      "market_key": "h2h",
+      "description": "Victoire Japan",
+      "outcome_name": "Japan"
+    },
+    "odds": 1.98,
+    "bookmaker": "Betfair",
+    "category": "VALEUR",
+    "expected_value": 8.5,
+    "explanation": "Le Japon a montré une bonne forme récente et devrait avoir l'avantage à domicile contre la Suède.",
+    "result": "pending",
+    "verified_at": null
+  },
+  {
+    "id": "d042af3e-0f4c-45da-8598-e72749c691e4",
+    "session_id": "9ad23088-8a93-4276-8935-cae6e49c42dc",
+    "session_type": "morning",
+    "created_at": "2026-06-25T11:44:58.480439+00:00",
+    "match": {
+      "home_team": "Norway",
+      "away_team": "France",
+      "commence_time": "2026-06-26T19:00:00Z",
+      "league": "Coupe du Monde 2026",
+      "league_key": "soccer_fifa_world_cup",
+      "match_id": "b86b4d60f773e9e3c46c00e9a6496e79"
+    },
+    "selection": {
+      "market_key": "h2h",
+      "description": "Victoire France",
+      "outcome_name": "France"
+    },
+    "odds": 1.69,
+    "bookmaker": "GTbets",
+    "category": "ULTRA SAFE",
+    "expected_value": 3.2,
+    "explanation": "La France est l'une des meilleures équipes du monde et devrait facilement vaincre la Norvège.",
+    "result": "pending",
+    "verified_at": null
+  },
+  {
+    "id": "35a20270-ecbe-411a-a59b-9d916ef627c2",
+    "session_id": "9ad23088-8a93-4276-8935-cae6e49c42dc",
+    "session_type": "morning",
+    "created_at": "2026-06-25T11:44:58.480439+00:00",
+    "match": {
+      "home_team": "Tunisia",
+      "away_team": "Netherlands",
+      "commence_time": "2026-06-25T23:00:00Z",
+      "league": "Coupe du Monde 2026",
+      "league_key": "soccer_fifa_world_cup",
+      "match_id": "f3c4657daa143a0c5bd62cb370d01ce4"
+    },
+    "selection": {
+      "market_key": "totals",
+      "description": "Plus de 2 buts",
+      "outcome_name": "Over"
+    },
+    "odds": 2.08,
+    "bookmaker": "Matchbook",
+    "category": "VALEUR",
+    "expected_value": 6.8,
+    "explanation": "Les Pays-Bas ont tendance à jouer offensivement et pourraient créer suffisamment d'occasions pour dépasser le total de 2 buts.",
+    "result": "pending",
+    "verified_at": null
+  },
+  {
+    "id": "76a36f9c-af53-4da4-a10d-9202d6ba3e73",
+    "session_id": "9ad23088-8a93-4276-8935-cae6e49c42dc",
+    "session_type": "morning",
+    "created_at": "2026-06-25T11:44:58.480439+00:00",
     "match": {
       "home_team": "Ecuador",
       "away_team": "Germany",
@@ -14,14 +92,14 @@
     },
     "selection": {
       "market_key": "h2h",
-      "description": "Victoire de l'Allemagne",
+      "description": "Victoire Allemagne",
       "outcome_name": "Germany"
     },
-    "odds": 1.92,
-    "bookmaker": "Nordic Bet",
+    "odds": 1.58,
+    "bookmaker": "Smarkets",
     "category": "VALEUR",
-    "expected_value": 8.1,
-    "explanation": "L'Allemagne est une équipe très forte et devrait gagner contre l'Équateur, qui a des faiblesses en défense.",
+    "expected_value": 4.5,
+    "explanation": "L'Allemagne a une équipe solide et devrait vaincre l'Équateur, qui a montré des signes de faiblesse dans ses derniers matchs.",
     "result": "pending",
     "verified_at": null
   }
