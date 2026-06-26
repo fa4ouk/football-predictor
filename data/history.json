@@ -311,6 +311,58 @@
       "explanation": "L'Espagne a une équipe technique et créative, avec une attaque puissante et une défense solide, ce qui la rend favorite pour gagner ce match contre l'Uruguay.",
       "result": "pending",
       "verified_at": null
+    },
+    {
+      "id": "45f5427c-f3ef-435e-9da3-91964fbad402",
+      "session_id": "ccdaebde-bfb6-49d9-90d7-ccdc0162a0ab",
+      "session_type": "evening",
+      "created_at": "2026-06-26T18:55:21.879453+00:00",
+      "match": {
+        "home_team": "Croatia",
+        "away_team": "Ghana",
+        "commence_time": "2026-06-27T21:00:00Z",
+        "league": "Coupe du Monde 2026",
+        "league_key": "soccer_fifa_world_cup",
+        "match_id": "537c0997cd899394f47f16545b7068b2"
+      },
+      "selection": {
+        "market_key": "h2h",
+        "description": "Victoire Croatia",
+        "outcome_name": "Croatia"
+      },
+      "odds": 1.84,
+      "bookmaker": "1xBet",
+      "category": "VALEUR",
+      "expected_value": 4.2,
+      "explanation": "La Croatie a une équipe solide et devrait gagner contre le Ghana.",
+      "result": "pending",
+      "verified_at": null
+    },
+    {
+      "id": "9d5322ee-bc66-463f-833d-1aa91aeafa8e",
+      "session_id": "ccdaebde-bfb6-49d9-90d7-ccdc0162a0ab",
+      "session_type": "evening",
+      "created_at": "2026-06-26T18:55:21.879453+00:00",
+      "match": {
+        "home_team": "DR Congo",
+        "away_team": "Uzbekistan",
+        "commence_time": "2026-06-27T23:30:00Z",
+        "league": "Coupe du Monde 2026",
+        "league_key": "soccer_fifa_world_cup",
+        "match_id": "13eab94a136b9c264ba974cf437a5f71"
+      },
+      "selection": {
+        "market_key": "h2h",
+        "description": "Victoire DR Congo",
+        "outcome_name": "DR Congo"
+      },
+      "odds": 1.84,
+      "bookmaker": "1xBet",
+      "category": "VALEUR",
+      "expected_value": 4.1,
+      "explanation": "Le Congo a une légère avance sur l'Ouzbékistan en termes de force de l'équipe, ce qui lui donne une chance de gagner.",
+      "result": "pending",
+      "verified_at": null
     }
   ],
   "sessions": []
