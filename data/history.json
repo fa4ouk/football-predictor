@@ -285,6 +285,32 @@
       "explanation": "L'Espagne a une équipe très compétitive et devrait avoir l'avantage sur l'Uruguay, même si ce dernier peut offrir une certaine résistance.",
       "result": "pending",
       "verified_at": null
+    },
+    {
+      "id": "ea730f19-4d98-4282-af87-79b9eb97e59a",
+      "session_id": "9ce351ca-705a-4a57-a525-f616ea3f5544",
+      "session_type": "morning",
+      "created_at": "2026-06-26T11:48:12.604954+00:00",
+      "match": {
+        "home_team": "Uruguay",
+        "away_team": "Spain",
+        "commence_time": "2026-06-27T00:00:00Z",
+        "league": "Coupe du Monde 2026",
+        "league_key": "soccer_fifa_world_cup",
+        "match_id": "dcff2e31c0bce001a4db5caaf4fa8822"
+      },
+      "selection": {
+        "market_key": "h2h",
+        "description": "Victoire Spain",
+        "outcome_name": "Spain"
+      },
+      "odds": 1.67,
+      "bookmaker": "Betfair",
+      "category": "VALEUR",
+      "expected_value": 2.8,
+      "explanation": "L'Espagne a une équipe technique et créative, avec une attaque puissante et une défense solide, ce qui la rend favorite pour gagner ce match contre l'Uruguay.",
+      "result": "pending",
+      "verified_at": null
     }
   ],
   "sessions": []
