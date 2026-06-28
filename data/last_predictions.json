@@ -1,9 +1,9 @@
 [
   {
-    "id": "58b3251c-75c7-4db7-a71c-f00d57a870c0",
-    "session_id": "e56b1e28-5128-41e5-9478-fc4bab70daca",
-    "session_type": "morning",
-    "created_at": "2026-06-28T11:12:31.092135+00:00",
+    "id": "9f08c24f-9f2f-4f63-8ea7-71f92144196a",
+    "session_id": "6790bc87-d262-4236-8fd9-6157868a661f",
+    "session_type": "evening",
+    "created_at": "2026-06-28T18:07:52.187634+00:00",
     "match": {
       "home_team": "Brazil",
       "away_team": "Japan",
@@ -14,92 +14,40 @@
     },
     "selection": {
       "market_key": "h2h",
-      "description": "Victoire Brésil",
+      "description": "Victoire Brazil",
       "outcome_name": "Brazil"
     },
     "odds": 1.74,
+    "bookmaker": "1xBet",
+    "category": "VALEUR",
+    "expected_value": 7.3,
+    "explanation": "Le Brésil est l'une des équipes les plus fortes de la compétition et devrait gagner contre le Japon, qui a des difficultés à rivaliser avec les meilleures équipes.",
+    "result": "pending",
+    "verified_at": null
+  },
+  {
+    "id": "8beb81a5-baa4-45a4-ba1c-ff5c56f4a09f",
+    "session_id": "6790bc87-d262-4236-8fd9-6157868a661f",
+    "session_type": "evening",
+    "created_at": "2026-06-28T18:07:52.187634+00:00",
+    "match": {
+      "home_team": "Netherlands",
+      "away_team": "Morocco",
+      "commence_time": "2026-06-30T01:00:00Z",
+      "league": "Coupe du Monde 2026",
+      "league_key": "soccer_fifa_world_cup",
+      "match_id": "5a34afe2de99513ba48360b983cfe80c"
+    },
+    "selection": {
+      "market_key": "h2h",
+      "description": "Victoire Netherlands",
+      "outcome_name": "Netherlands"
+    },
+    "odds": 2.28,
     "bookmaker": "Smarkets",
-    "category": "ULTRA SAFE",
-    "expected_value": 10.3,
-    "explanation": "Le Brésil est l'un des favoris de la compétition et devrait facilement gagner contre le Japon.",
-    "result": "pending",
-    "verified_at": null
-  },
-  {
-    "id": "9ab04aa5-43f8-4bc0-87b6-70956fe5f61c",
-    "session_id": "e56b1e28-5128-41e5-9478-fc4bab70daca",
-    "session_type": "morning",
-    "created_at": "2026-06-28T11:12:31.092135+00:00",
-    "match": {
-      "home_team": "Germany",
-      "away_team": "Paraguay",
-      "commence_time": "2026-06-29T20:30:00Z",
-      "league": "Coupe du Monde 2026",
-      "league_key": "soccer_fifa_world_cup",
-      "match_id": "4930db8e83436874d09e59bd0e29c1a5"
-    },
-    "selection": {
-      "market_key": "totals",
-      "description": "Plus de buts",
-      "outcome_name": "Over"
-    },
-    "odds": 1.93,
-    "bookmaker": "Pinnacle",
-    "category": "VALEUR",
-    "expected_value": 6.2,
-    "explanation": "L'Allemagne a tendance à jouer offensivement et pourrait facilement marquer plusieurs buts contre le Paraguay.",
-    "result": "pending",
-    "verified_at": null
-  },
-  {
-    "id": "c65a802b-14ab-46ce-9572-e77aa31ea91e",
-    "session_id": "e56b1e28-5128-41e5-9478-fc4bab70daca",
-    "session_type": "morning",
-    "created_at": "2026-06-28T11:12:31.092135+00:00",
-    "match": {
-      "home_team": "South Africa",
-      "away_team": "Canada",
-      "commence_time": "2026-06-28T19:00:00Z",
-      "league": "Coupe du Monde 2026",
-      "league_key": "soccer_fifa_world_cup",
-      "match_id": "def55b09ef3d6854e3c01e74b5c63415"
-    },
-    "selection": {
-      "market_key": "totals",
-      "description": "Plus de buts",
-      "outcome_name": "Over"
-    },
-    "odds": 2.2,
-    "bookmaker": "Nordic Bet",
     "category": "OPPORTUNISTE",
-    "expected_value": 4.5,
-    "explanation": "Le Canada et l'Afrique du Sud pourraient jouer un match offensif avec plusieurs buts.",
-    "result": "pending",
-    "verified_at": null
-  },
-  {
-    "id": "4f11819e-8eef-46f5-9e46-f113769a99e0",
-    "session_id": "e56b1e28-5128-41e5-9478-fc4bab70daca",
-    "session_type": "morning",
-    "created_at": "2026-06-28T11:12:31.092135+00:00",
-    "match": {
-      "home_team": "Brazil",
-      "away_team": "Japan",
-      "commence_time": "2026-06-29T17:00:00Z",
-      "league": "Coupe du Monde 2026",
-      "league_key": "soccer_fifa_world_cup",
-      "match_id": "4f3d72fba877939d36a5315618184093"
-    },
-    "selection": {
-      "market_key": "totals",
-      "description": "Moins de buts",
-      "outcome_name": "Under"
-    },
-    "odds": 1.94,
-    "bookmaker": "Matchbook",
-    "category": "VALEUR",
-    "expected_value": 7.1,
-    "explanation": "Le Brésil et le Japon pourraient jouer un match défensif avec peu de buts.",
+    "expected_value": 5.5,
+    "explanation": "Les Pays-Bas ont une équipe solide et devraient être en mesure de vaincre le Maroc, qui a des difficultés à trouver son rythme de jeu dans la compétition.",
     "result": "pending",
     "verified_at": null
   }
