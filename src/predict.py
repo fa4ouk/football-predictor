@@ -1,7 +1,6 @@
 """
-Logique de génération des pronostics.
-Appelé 2 fois/jour par GitHub Actions (matin + soir).
-Le soir réutilise le cache de cotes du matin pour économiser des requêtes API.
+Logique de génération des pronostics - Version Wimbledon
+Limite les matchs à 35 pour respecter le quota Groq gratuit.
 """
 import uuid
 from datetime import datetime, timezone
@@ -16,9 +15,11 @@ from storage import (
 from stats import compute
 from telegram_bot import send, alert, format_predictions
 
+# Limite stricte pour ne pas dépasser 12000 tokens chez Groq
+MAX_MATCHES_FOR_AI = 35
+
 
 def run(session_type: str = "morning"):
-    """Point d'entrée principal de la génération."""
     now = datetime.now(timezone.utc)
 
     # ── Récupération des cotes ───────────────────────────
@@ -31,9 +32,8 @@ def run(session_type: str = "morning"):
                 cache_time = datetime.fromisoformat(cache["timestamp"])
             except ValueError:
                 pass
-        # Si le cache est trop vieux (>14h), on refetch
         if not cache or not cache_time or (now - cache_time).total_seconds() > 14 * 3600:
-            print("  ⚠ Cache trop vieux ou absent, fetch frais même pour le soir")
+            print("  ⚠ Cache trop vieux, fetch frais même pour le soir")
             use_cache = False
             raw_matches = fetch_odds_all_leagues()
         else:
@@ -43,24 +43,25 @@ def run(session_type: str = "morning"):
         raw_matches = fetch_odds_all_leagues()
 
     if not raw_matches:
-        alert("Aucun match trouvé dans les cotes. Peut-être pas de matchs aujourd'hui, ou erreur API.")
+        alert("Aucun match trouvé. Erreur API ou pas de matchs aujourd'hui.")
         return
 
-    # Mise en cache (matin uniquement, ou si on a refetch le soir)
     if session_type == "morning" or not use_cache:
         save_odds_cache({"timestamp": now.isoformat(), "matches": raw_matches})
 
-    # ── Formatage pour l'IA ──────────────────────────────
+    # ── Formatage et limitation pour l'IA ───────────────
     odds_data = format_odds_for_ai(raw_matches)
     if not odds_data:
-        alert("Aucune cote exploitable trouvée après formatage.")
+        alert("Aucune cote exploitable.")
         return
+
+    # Trier par heure et limiter à MAX_MATCHES_FOR_IA pour ne pas exploser Groq
+    odds_data = sorted(odds_data, key=lambda x: x["time"])[:MAX_MATCHES_FOR_AI]
+    print(f"  ✂️ Limité à {len(odds_data)} matchs pour l'IA (limite Groq)")
 
     # ── Historique & stats ───────────────────────────────
     history = load_history()
     stats = compute(history)
-
-    # Pronostics du matin à exclure le soir
     previous = load_last_predictions() if use_cache else None
 
     # ── Appel à l'IA ────────────────────────────────────
@@ -68,12 +69,8 @@ def run(session_type: str = "morning"):
     predictions = analyze(odds_data, stats, previous)
 
     if not predictions:
-        alert("L'IA n'a retourné aucun pronostic valide. Vérifiez les logs.")
+        alert("L'IA n'a retourné aucun pronostic valide.")
         return
-
-    # Compléter à 5 si l'IA en a donné moins (avec note d'honnêteté)
-    if len(predictions) < 5:
-        print(f"  ⚠ L'IA n'a fourni que {len(predictions)} pronostics (sur 5 demandés)")
 
     predictions = predictions[:5]
 
@@ -81,7 +78,6 @@ def run(session_type: str = "morning"):
     session_id = str(uuid.uuid4())
     pending = load_pending()
 
-    # Déduplication : clé = (home, away, commence_time, description)
     seen_keys = {
         (p["match"]["home_team"], p["match"]["away_team"],
          p["match"]["commence_time"], p["selection"]["description"])
@@ -90,7 +86,14 @@ def run(session_type: str = "morning"):
 
     new_records = []
     for p in predictions:
-        key = (p["home_team"], p["away_team"], p["commence_time"], p["selection_description"])
+        # Retrouver l'heure complète depuis les données brutes (car l'IA n'a que l'heure)
+        full_time = now.isoformat()
+        for rm in raw_matches:
+            if rm["id"] == p.get("match_id"):
+                full_time = rm["commence_time"]
+                break
+
+        key = (p["home_team"], p["away_team"], full_time, p["selection_description"])
         if key in seen_keys:
             print(f"  ⏭ Doublon ignoré: {p['home_team']} vs {p['away_team']}")
             continue
@@ -103,9 +106,9 @@ def run(session_type: str = "morning"):
             "match": {
                 "home_team": p["home_team"],
                 "away_team": p["away_team"],
-                "commence_time": p["commence_time"],
+                "commence_time": full_time,
                 "league": p["league"],
-                "league_key": None,  # sera rempli ci-dessous
+                "league_key": None,
                 "match_id": p.get("match_id", ""),
             },
             "selection": {
@@ -122,7 +125,6 @@ def run(session_type: str = "morning"):
             "verified_at": None,
         }
 
-        # Retrouver la league_key depuis les données brutes
         for rm in raw_matches:
             if rm["id"] == p.get("match_id"):
                 record["match"]["league_key"] = rm.get("_league_key")
@@ -133,7 +135,7 @@ def run(session_type: str = "morning"):
         seen_keys.add(key)
 
     if not new_records:
-        print("  ⏭ Tous les pronostics étaient des doublons, rien à envoyer.")
+        print("  ⏭ Tous les pronostics étaient des doublons.")
         return
 
     # ── Sauvegarde ──────────────────────────────────────
