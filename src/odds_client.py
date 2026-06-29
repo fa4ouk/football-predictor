@@ -1,7 +1,5 @@
 """
-Client pour The Odds API — récupération des cotes ET des scores.
-Version optimisée : garde uniquement la meilleure cote par marché
-pour réduire drastiquement le nombre de tokens envoyés à l'IA.
+Client pour The Odds API — Version Ultra-Compacte Wimbledon
 """
 import requests
 from datetime import datetime, timezone, timedelta
@@ -59,46 +57,31 @@ def fetch_odds_all_leagues() -> list:
 
 def format_odds_for_ai(matches: list) -> list:
     """
-    Extrait UNIQUEMENT la meilleure cote disponible pour chaque outcome.
-    Passe de ~45 000 tokens à ~3 000 tokens.
+    Format ULTRA COMPACT pour diviser le nombre de tokens par 10.
+    Ex: {"h2h": {"Alcaraz": 1.40, "Djokovic": 2.80}, "totals": {"Over 35.5": 1.90}}
     """
     formatted = []
     for m in matches:
-        best_outcomes = {}
-
+        best = {}
         for bm in m.get("bookmakers", []):
             for mk in bm.get("markets", []):
-                market_key = mk["key"]
-                if market_key not in best_outcomes:
-                    best_outcomes[market_key] = {}
-
+                key = mk["key"]
+                if key not in best:
+                    best[key] = {}
                 for o in mk.get("outcomes", []):
                     name = o["name"]
                     price = o.get("price", 0)
-                    # Garder la cote la plus haute (meilleure pour le parieur)
-                    if name not in best_outcomes[market_key] or price > best_outcomes[market_key][name]["price"]:
-                        best_outcomes[market_key][name] = {
-                            "name": name,
-                            "price": price,
-                            "bookmaker": bm["title"]
-                        }
+                    if name not in best[key] or price > best[key][name]:
+                        best[key][name] = price
 
-        # Reconstruire la structure minimale
-        compact_markets = []
-        for mk_key, outcomes in best_outcomes.items():
-            compact_markets.append({
-                "market": mk_key,
-                "outcomes": list(outcomes.values())
-            })
-
-        if compact_markets:
+        if best:
             formatted.append({
                 "id": m["id"],
                 "home": m["home_team"],
                 "away": m["away_team"],
-                "time": m["commence_time"],
                 "league": m.get("_league", "?"),
-                "odds": compact_markets
+                "time": m["commence_time"][11:16],
+                "odds": best
             })
             
     return formatted
