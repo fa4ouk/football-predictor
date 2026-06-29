@@ -16,7 +16,7 @@ from stats import compute
 from telegram_bot import send, alert, format_predictions
 
 # Limite stricte pour ne pas dépasser 12000 tokens chez Groq
-MAX_MATCHES_FOR_AI = 35
+MAX_MATCHES_FOR_AI = 20
 
 
 def run(session_type: str = "morning"):
