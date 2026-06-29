@@ -1,53 +1,105 @@
 [
   {
-    "id": "da295f02-02c8-4318-8fcd-473dc29a3984",
-    "session_id": "5339c2c4-8420-41de-a84f-0f552ab36680",
+    "id": "25b6184e-1a25-42eb-91f7-84fdc9c36afb",
+    "session_id": "77bb2c83-8681-42ea-b13f-25da68bd08ed",
     "session_type": "morning",
-    "created_at": "2026-06-29T01:33:58.337899+00:00",
+    "created_at": "2026-06-29T13:12:28.756515+00:00",
     "match": {
-      "home_team": "Andrey Rublev",
-      "away_team": "Roman Safiullin",
-      "commence_time": "2026-06-29T10:00:00Z",
+      "home_team": "Jan-Lennard Struff",
+      "away_team": "Sebastian Baez",
+      "commence_time": "2026-06-29T13:20:00Z",
       "league": "Wimbledon Hommes (ATP)",
       "league_key": "tennis_atp_wimbledon",
-      "match_id": "2118e17ef47c533ba58f35e27d165359"
+      "match_id": "2db3ab0bc3167d0e2dc13fc5f4be8a8e"
     },
     "selection": {
       "market_key": "h2h",
-      "description": "Victoire d'Andrey Rublev",
-      "outcome_name": "Andrey Rublev"
+      "description": "Victoire Jan-Lennard Struff",
+      "outcome_name": "Jan-Lennard Struff"
     },
-    "odds": 1.54,
+    "odds": 1.42,
     "bookmaker": "Bookmaker",
     "category": "ULTRA SAFE",
-    "expected_value": 8.5,
-    "explanation": "Rublev est un joueur expérimenté et a une forte chance de gagner contre Safiullin, qui est moins expérimenté sur gazon.",
+    "expected_value": 10.2,
+    "explanation": "Jan-Lennard Struff a une bonne forme récente sur gazon et est favori contre Sebastian Baez.",
     "result": "pending",
     "verified_at": null
   },
   {
-    "id": "bac5a759-4034-4508-a5f8-922a803797a4",
-    "session_id": "5339c2c4-8420-41de-a84f-0f552ab36680",
+    "id": "28b7bc5b-0956-47a1-8d4c-83d5db5625a7",
+    "session_id": "77bb2c83-8681-42ea-b13f-25da68bd08ed",
     "session_type": "morning",
-    "created_at": "2026-06-29T01:33:58.337899+00:00",
+    "created_at": "2026-06-29T13:12:28.756515+00:00",
     "match": {
-      "home_team": "Michael Zheng",
-      "away_team": "Cameron Norrie",
-      "commence_time": "2026-06-29T11:10:00Z",
+      "home_team": "Marin Cilic",
+      "away_team": "Daniil Medvedev",
+      "commence_time": "2026-06-29T13:35:00Z",
       "league": "Wimbledon Hommes (ATP)",
       "league_key": "tennis_atp_wimbledon",
-      "match_id": "35090f59026ece4c7ffb98c0066d7ad8"
+      "match_id": "68ba4da7fda72170ec9204bd16e38485"
     },
     "selection": {
       "market_key": "h2h",
-      "description": "Victoire de Cameron Norrie",
-      "outcome_name": "Cameron Norrie"
+      "description": "Victoire Daniil Medvedev",
+      "outcome_name": "Daniil Medvedev"
     },
-    "odds": 1.65,
+    "odds": 1.4,
+    "bookmaker": "Bookmaker",
+    "category": "ULTRA SAFE",
+    "expected_value": 8.4,
+    "explanation": "Daniil Medvedev est un joueur solide sur gazon et a une nette supériorité sur Marin Cilic.",
+    "result": "pending",
+    "verified_at": null
+  },
+  {
+    "id": "34fb79f8-702c-4fbb-aa5a-7aa538b3e481",
+    "session_id": "77bb2c83-8681-42ea-b13f-25da68bd08ed",
+    "session_type": "morning",
+    "created_at": "2026-06-29T13:12:28.756515+00:00",
+    "match": {
+      "home_team": "Alycia Parks",
+      "away_team": "Alicia Dudeney",
+      "commence_time": "2026-06-29T14:00:00Z",
+      "league": "Wimbledon Femmes (WTA)",
+      "league_key": "tennis_wta_wimbledon",
+      "match_id": "04d8a18bde683ba421b314f188fb5ecd"
+    },
+    "selection": {
+      "market_key": "h2h",
+      "description": "Victoire Alycia Parks",
+      "outcome_name": "Alycia Parks"
+    },
+    "odds": 1.62,
+    "bookmaker": "Bookmaker",
+    "category": "ULTRA SAFE",
+    "expected_value": 7.8,
+    "explanation": "Alycia Parks a une bonne forme et est favorite contre Alicia Dudeney.",
+    "result": "pending",
+    "verified_at": null
+  },
+  {
+    "id": "225fd42b-5794-46e7-99f1-01cd5dee6acf",
+    "session_id": "77bb2c83-8681-42ea-b13f-25da68bd08ed",
+    "session_type": "morning",
+    "created_at": "2026-06-29T13:12:28.756515+00:00",
+    "match": {
+      "home_team": "Ethan Quinn",
+      "away_team": "Luciano Darderi",
+      "commence_time": "2026-06-29T14:00:00Z",
+      "league": "Wimbledon Hommes (ATP)",
+      "league_key": "tennis_atp_wimbledon",
+      "match_id": "69332957db75f96119b6693f1d3e7972"
+    },
+    "selection": {
+      "market_key": "h2h",
+      "description": "Victoire Ethan Quinn",
+      "outcome_name": "Ethan Quinn"
+    },
+    "odds": 1.58,
     "bookmaker": "Bookmaker",
     "category": "VALEUR",
     "expected_value": 6.5,
-    "explanation": "Norrie est un joueur expérimenté sur gazon et a une bonne chance de gagner contre Zheng, qui est moins expérimenté sur cette surface.",
+    "explanation": "Ethan Quinn a une bonne forme récente et une cote sous-estimée par rapport à son adversaire Luciano Darderi.",
     "result": "pending",
     "verified_at": null
   }
