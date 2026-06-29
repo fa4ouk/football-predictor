@@ -41,7 +41,7 @@ def _build_previous_block(previous: list) -> str:
 
 
 def _build_prompt(odds_data: list, stats: dict, previous: list = None) -> str:
-    return f"""Tu es un analyste de cotes de tennis de niveau professionnel, spécialiste absolue du gazon de Wimbledon. Ta mission : sélectionner exactement 5 pronostics simples.
+    return f"""Tu es un analyste de cotes de tennis de niveau professionnel, spécialiste absolu du gazon de Wimbledon. Ta mission : sélectionner exactement 5 pronostics simples.
 
 RÈGLES IMPÉRATIVES :
 - Exactement 5 pronostics. Ni plus, ni moins.
@@ -88,7 +88,7 @@ Réponds UNIQUEMENT avec ce JSON valide, ni texte avant ni après :
       "home_team": "nom exact joueur 1 (copié des données)",
       "away_team": "nom exact joueur 2 (copié des données)",
       "league": "nom de la compétition",
-      "commence_time": "date ISO 8601",
+      "commence_time": "heure du match (ex: 14:00)",
       "market_key": "h2h ou totals ou spreads",
       "selection_description": "ex: Victoire Alcaraz, Plus de 35.5 jeux, Alcaraz -4.5 jeux",
       "outcome_name": "nom exact du outcome dans les données",
