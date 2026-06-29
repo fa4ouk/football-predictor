@@ -1,6 +1,5 @@
 """
-Moteur IA : construit le prompt, interroge Groq, valide la réponse.
-Utilise le mode JSON pour garantir un parsing fiable.
+Moteur IA Wimbledon - Analyse de cotes de tennis
 """
 import json
 from groq import Groq
@@ -8,7 +7,6 @@ from config import GROQ_API_KEY, GROQ_MODEL, MIN_ODDS, MAX_ODDS
 
 
 def _build_strategy_tips(stats: dict) -> str:
-    """Génère des conseils de stratégie basés sur l'historique."""
     tips = []
     cf = stats.get("consecutive_failures", {})
     for key, count in cf.items():
@@ -31,7 +29,6 @@ def _build_strategy_tips(stats: dict) -> str:
 
 
 def _build_previous_block(previous: list) -> str:
-    """Bloque décrivant les pronostics déjà faits (pour éviter doublons)."""
     if not previous:
         return ""
     lines = ["\nPRONOSTICS DÉJÀ ÉMIS AUJOURD'HUI (ne pas dupliquer) :"]
@@ -44,20 +41,34 @@ def _build_previous_block(previous: list) -> str:
 
 
 def _build_prompt(odds_data: list, stats: dict, previous: list = None) -> str:
-    """Construit le prompt complet pour le modèle."""
-    return f"""Tu es un analyste de cotes de football de niveau professionnel. Ta mission : sélectionner exactement 5 pronostics simples parmi les matchs ci-dessous.
+    return f"""Tu es un analyste de cotes de tennis de niveau professionnel, spécialiste absolue du gazon de Wimbledon. Ta mission : sélectionner exactement 5 pronostics simples.
 
 RÈGLES IMPÉRATIVES :
 - Exactement 5 pronostics. Ni plus, ni moins.
 - Un pronostic = un coupon SIMPLE (1 seule sélection, jamais de combiné).
 - Cotes obligatoirement entre {MIN_ODDS} et {MAX_ODDS}.
-- Diversifie les matchs choisis plutôt que de tout miser sur les 2 mêmes rencontres.
-- Si les opportunités sont faibles, propose quand même tes 5 meilleurs choix mais sois honnête sur la confiance dans l'explication.
+
+RÉPARTITION OBLIGATOIRE DES 5 PRONOSTICS :
+- 2 pronostics "ULTRA SAFE" chez les HOMMES (ATP Wimbledon)
+- 2 pronostics "ULTRA SAFE" chez les FEMMES (WTA Wimbledon)
+- 1 pronostic LIBRE (n'importe quel tableau, n'importe quelle catégorie : VALEUR ou OPPORTUNISTE)
 
 CATÉGORIES (assigne exactement l'une des trois) :
-- ULTRA SAFE : probabilité >70 %, cote modeste mais très fiable (souvent 1.4–1.7)
-- VALEUR : Expected Value positif détecté, la cote est sous-évaluée par le marché (souvent 1.7–2.2)
-- OPPORTUNISTE : cote plus risquée (2.0–2.5) mais avec une logique sportive solide
+- ULTRA SAFE : probabilité >70 %, cote modeste mais très fiable (1.4–1.7). Favori fort sur gazon contre un joueur faible.
+- VALEUR : Expected Value positif, la cote est sous-évaluée par le marché (1.7–2.2).
+- OPPORTUNISTE : cote plus risquée (2.0–2.5) mais logique solide (ex: handicap de jeux intéressant).
+
+TYPES DE MARCHÉS DISPONIBLES :
+- h2h : Victoire d'un joueur
+- totals : Over/Under sur le nombre total de JEUX du match (pas de sets)
+- spreads : Handicap de jeux (ex: Joueur A -4.5 jeux)
+
+ANALYSE TENNIS ATTENDUE :
+- Prends en compte la surface (gazon : service, slice, réception).
+- La forme récente du joueur sur gazon.
+- Le niveau de l'adversaire.
+- Pour les totaux : style de jeu des deux joueurs (serveur-volleyeur vs baseliner).
+- Pour les spreads : écart de niveau réaliste entre les deux joueurs.
 
 HISTORIQUE DE PERFORMANCE :
 {json.dumps(stats, indent=2, ensure_ascii=False)}
@@ -74,28 +85,24 @@ Réponds UNIQUEMENT avec ce JSON valide, ni texte avant ni après :
   "predictions": [
     {{
       "match_id": "id du match",
-      "home_team": "nom exact domicile (copié des données)",
-      "away_team": "nom exact extérieur (copié des données)",
+      "home_team": "nom exact joueur 1 (copié des données)",
+      "away_team": "nom exact joueur 2 (copié des données)",
       "league": "nom de la compétition",
       "commence_time": "date ISO 8601",
-      "market_key": "h2h ou totals",
-      "selection_description": "ex: Victoire Arsenal, Plus de 2.5 buts, Moins de 3.5 buts",
-      "outcome_name": "nom exact du outcome dans les données (ex: Arsenal, Over 2.5, Under 3.5)",
+      "market_key": "h2h ou totals ou spreads",
+      "selection_description": "ex: Victoire Alcaraz, Plus de 35.5 jeux, Alcaraz -4.5 jeux",
+      "outcome_name": "nom exact du outcome dans les données",
       "odds": 1.85,
       "bookmaker": "nom du bookmaker",
       "category": "ULTRA SAFE ou VALEUR ou OPPORTUNISTE",
       "expected_value": 5.2,
-      "explanation": "1-2 phrases d'analyse sportive justifiant le choix"
+      "explanation": "1-2 phrases d'analyse tennis justifiant le choix"
     }}
   ]
 }}"""
 
 
 def analyze(odds_data: list, stats: dict, previous: list = None) -> list:
-    """
-    Interroge Groq et retourne la liste des pronostics validés.
-    En cas d'erreur, retourne une liste vide.
-    """
     client = Groq(api_key=GROQ_API_KEY)
 
     try:
@@ -115,7 +122,6 @@ def analyze(odds_data: list, stats: dict, previous: list = None) -> list:
         print(f"  ❌ Erreur Groq: {e}")
         return []
 
-    # Validation
     valid = []
     for p in preds:
         odds = p.get("odds", 0)
