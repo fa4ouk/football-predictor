@@ -623,6 +623,58 @@
       "explanation": "Les Pays-Bas ont une équipe solide et devraient être en mesure de vaincre le Maroc, qui a des difficultés à trouver son rythme de jeu dans la compétition.",
       "result": "pending",
       "verified_at": null
+    },
+    {
+      "id": "da295f02-02c8-4318-8fcd-473dc29a3984",
+      "session_id": "5339c2c4-8420-41de-a84f-0f552ab36680",
+      "session_type": "morning",
+      "created_at": "2026-06-29T01:33:58.337899+00:00",
+      "match": {
+        "home_team": "Andrey Rublev",
+        "away_team": "Roman Safiullin",
+        "commence_time": "2026-06-29T10:00:00Z",
+        "league": "Wimbledon Hommes (ATP)",
+        "league_key": "tennis_atp_wimbledon",
+        "match_id": "2118e17ef47c533ba58f35e27d165359"
+      },
+      "selection": {
+        "market_key": "h2h",
+        "description": "Victoire d'Andrey Rublev",
+        "outcome_name": "Andrey Rublev"
+      },
+      "odds": 1.54,
+      "bookmaker": "Bookmaker",
+      "category": "ULTRA SAFE",
+      "expected_value": 8.5,
+      "explanation": "Rublev est un joueur expérimenté et a une forte chance de gagner contre Safiullin, qui est moins expérimenté sur gazon.",
+      "result": "pending",
+      "verified_at": null
+    },
+    {
+      "id": "bac5a759-4034-4508-a5f8-922a803797a4",
+      "session_id": "5339c2c4-8420-41de-a84f-0f552ab36680",
+      "session_type": "morning",
+      "created_at": "2026-06-29T01:33:58.337899+00:00",
+      "match": {
+        "home_team": "Michael Zheng",
+        "away_team": "Cameron Norrie",
+        "commence_time": "2026-06-29T11:10:00Z",
+        "league": "Wimbledon Hommes (ATP)",
+        "league_key": "tennis_atp_wimbledon",
+        "match_id": "35090f59026ece4c7ffb98c0066d7ad8"
+      },
+      "selection": {
+        "market_key": "h2h",
+        "description": "Victoire de Cameron Norrie",
+        "outcome_name": "Cameron Norrie"
+      },
+      "odds": 1.65,
+      "bookmaker": "Bookmaker",
+      "category": "VALEUR",
+      "expected_value": 6.5,
+      "explanation": "Norrie est un joueur expérimenté sur gazon et a une bonne chance de gagner contre Zheng, qui est moins expérimenté sur cette surface.",
+      "result": "pending",
+      "verified_at": null
     }
   ],
   "sessions": []
