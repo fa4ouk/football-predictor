@@ -29,4 +29,7 @@ TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 
 # ── Délais ───────────────────────────────────────────────────
 VERIFICATION_TIMEOUT_HOURS = 24
-MATCHES_LOOKAHEAD_HOURS = 36
+
+# Regarder UNIQUEMENT les matchs des 14 prochaines heures
+# Le matin à 9h UTC, ça couvre jusqu'à 23h UTC (toute la journée Wimbledon)
+MATCHES_LOOKAHEAD_HOURS = 14
