@@ -154,5 +154,31 @@
     "explanation": "Ethan Quinn a une bonne forme récente et une cote sous-estimée par rapport à son adversaire Luciano Darderi.",
     "result": "pending",
     "verified_at": null
+  },
+  {
+    "id": "2cae81f2-2715-4032-b91d-2aea0b211a2a",
+    "session_id": "658dc6e0-235c-4948-be75-5b1ee68a23b8",
+    "session_type": "evening",
+    "created_at": "2026-06-29T19:06:28.476227+00:00",
+    "match": {
+      "home_team": "Oleksandra Oliynykova",
+      "away_team": "McCartney Kessler",
+      "commence_time": "2026-06-29T18:00:00Z",
+      "league": "Wimbledon Femmes (WTA)",
+      "league_key": "tennis_wta_wimbledon",
+      "match_id": "9b6673cf8f207de28b1432975cfd9143"
+    },
+    "selection": {
+      "market_key": "spreads",
+      "description": "McCartney Kessler -4.5 jeux",
+      "outcome_name": "McCartney Kessler"
+    },
+    "odds": 1.9,
+    "bookmaker": "Bookmaker",
+    "category": "OPPORTUNISTE",
+    "expected_value": 6,
+    "explanation": "McCartney Kessler a une bonne forme récente et un style de jeu qui convient bien au gazon, ce qui lui donne une bonne chance de gagner avec un handicap de jeux.",
+    "result": "pending",
+    "verified_at": null
   }
 ]
