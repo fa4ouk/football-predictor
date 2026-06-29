@@ -48,7 +48,6 @@ def _determine_result(prediction: dict, score_data: dict) -> str:
     if not score_str_1:
         return "pending"
 
-    # scores[0] = Joueur 1 (domicile), scores[1] = Joueur 2 (extérieur)
     p1_sets, p2_sets, p1_games, p2_games = _parse_tennis_score(score_str_1)
 
     if p1_sets == 0 and p2_sets == 0:
@@ -62,7 +61,7 @@ def _determine_result(prediction: dict, score_data: dict) -> str:
 
     home_won_match = p1_sets > p2_sets
     total_games = p1_games + p2_games
-    game_diff = p1_games - p2_games  # positif = J1 domine
+    game_diff = p1_games - p2_games 
 
     if market == "h2h":
         is_home = (outcome in home_name) or (home_name in outcome)
@@ -73,7 +72,6 @@ def _determine_result(prediction: dict, score_data: dict) -> str:
         elif is_away and not is_home:
             return "won" if not home_won_match else "lost"
         else:
-            # Fallback avec le nom du joueur dans les scores
             name1 = scores[0].get("name", "").lower()
             if outcome in name1 or name1 in outcome:
                 return "won" if home_won_match else "lost"
@@ -95,10 +93,8 @@ def _determine_result(prediction: dict, score_data: dict) -> str:
             is_home_spread = (outcome in home_name) or (home_name in outcome)
 
             if is_home_spread:
-                # J1 doit gagner par plus que le spread
                 return "won" if game_diff > spread_value else "lost"
             else:
-                # J2 doit gagner par plus que le spread (game_diff inversé)
                 return "won" if (-game_diff) > spread_value else "lost"
 
     return "pending"
