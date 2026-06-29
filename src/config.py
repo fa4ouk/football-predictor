@@ -1,5 +1,5 @@
 """
-Configuration centrale - Optimisé pour les compétitions actives
+Configuration Wimbledon - Spécialisé Tennis sur gazon
 """
 import os
 
@@ -7,16 +7,13 @@ import os
 ODDS_API_KEY = os.environ.get("ODDS_API_KEY", "")
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 
-# Compétitions actives (clés vérifiées qui répondent 200)
 LEAGUES = {
-    "soccer_fifa_world_cup":            "Coupe du Monde 2026",
-    "soccer_usa_mls":                   "MLS",
-    "soccer_argentina_primera_division": "Liga Argentine",
-    "soccer_japan_j_league":            "J-League",
+    "tennis_atp_wimbledon": "Wimbledon Hommes (ATP)",
+    "tennis_wta_wimbledon": "Wimbledon Femmes (WTA)",
 }
 
-# Marchés à récupérer
-MARKETS = "h2h,totals"
+# Marchés tennis : Vainqueur, Total jeux, Handicap jeux
+MARKETS = "h2h,totals,spreads"
 
 # Plage de cotes acceptable
 MIN_ODDS = 1.4
