@@ -1,7 +1,6 @@
 """
-Logique de vérification des résultats.
-Processus séparé de la génération, exécuté 4 fois/jour.
-Utilise les scores de The Odds API (même match_id que les cotes).
+Vérification des résultats - Spécialisé Tennis (Wimbledon)
+Parse les scores en sets/jeux pour déterminer h2h, totals et spreads.
 """
 import re
 from datetime import datetime, timezone, timedelta
@@ -11,18 +10,49 @@ from telegram_bot import send, alert, format_recap
 from config import VERIFICATION_TIMEOUT_HOURS
 
 
+def _parse_tennis_score(score_string: str):
+    """
+    Parse un score tennis comme "6-4, 7-5, 6-3"
+    Retourne : (sets_j1, sets_j2, jeux_j1, jeux_j2)
+    """
+    sets = score_string.split(", ")
+    p1_sets = 0
+    p2_sets = 0
+    p1_games = 0
+    p2_games = 0
+    
+    for s in sets:
+        parts = s.split("-")
+        if len(parts) == 2:
+            try:
+                g1 = int(parts[0].strip())
+                g2 = int(parts[1].strip())
+                p1_games += g1
+                p2_games += g2
+                if g1 > g2:
+                    p1_sets += 1
+                else:
+                    p2_sets += 1
+            except ValueError:
+                continue
+                
+    return p1_sets, p2_sets, p1_games, p2_games
+
+
 def _determine_result(prediction: dict, score_data: dict) -> str:
-    """
-    Détermine si un pronostic est gagné ou perdu
-    à partir des données de score de l'API.
-    """
     scores = score_data.get("scores", [])
     if len(scores) < 2:
         return "pending"
 
-    # L'API The Odds met généralement le domicile en premier
-    home_score = scores[0].get("score", 0)
-    away_score = scores[1].get("score", 0)
+    score_str_1 = scores[0].get("score", "")
+    if not score_str_1:
+        return "pending"
+
+    # scores[0] = Joueur 1 (domicile), scores[1] = Joueur 2 (extérieur)
+    p1_sets, p2_sets, p1_games, p2_games = _parse_tennis_score(score_str_1)
+
+    if p1_sets == 0 and p2_sets == 0:
+        return "pending"
 
     sel = prediction["selection"]
     market = sel["market_key"]
@@ -30,40 +60,51 @@ def _determine_result(prediction: dict, score_data: dict) -> str:
     home_name = prediction["match"]["home_team"].lower()
     away_name = prediction["match"]["away_team"].lower()
 
-    if market == "h2h":
-        if "draw" in outcome:
-            return "won" if home_score == away_score else "lost"
+    home_won_match = p1_sets > p2_sets
+    total_games = p1_games + p2_games
+    game_diff = p1_games - p2_games  # positif = J1 domine
 
-        # Identifier si l'outcome correspond à domicile ou extérieur
+    if market == "h2h":
         is_home = (outcome in home_name) or (home_name in outcome)
         is_away = (outcome in away_name) or (away_name in outcome)
 
         if is_home and not is_away:
-            return "won" if home_score > away_score else "lost"
+            return "won" if home_won_match else "lost"
         elif is_away and not is_home:
-            return "won" if away_score > home_score else "lost"
+            return "won" if not home_won_match else "lost"
         else:
-            # Ambigu → tenter avec le nom exact du score
-            scorer_home = scores[0].get("name", "").lower()
-            if outcome in scorer_home or scorer_home in outcome:
-                return "won" if home_score > away_score else "lost"
-            return "pending"  # Ne pas deviner
+            # Fallback avec le nom du joueur dans les scores
+            name1 = scores[0].get("name", "").lower()
+            if outcome in name1 or name1 in outcome:
+                return "won" if home_won_match else "lost"
+            return "pending"
 
     elif market == "totals":
         m = re.search(r"([\d.]+)", outcome)
         if m:
             threshold = float(m.group(1))
-            total = home_score + away_score
             if "over" in outcome:
-                return "won" if total > threshold else "lost"
+                return "won" if total_games > threshold else "lost"
             elif "under" in outcome:
-                return "won" if total < threshold else "lost"
+                return "won" if total_games < threshold else "lost"
+
+    elif market == "spreads":
+        m = re.search(r"([+-]?[\d.]+)", outcome)
+        if m:
+            spread_value = float(m.group(1))
+            is_home_spread = (outcome in home_name) or (home_name in outcome)
+
+            if is_home_spread:
+                # J1 doit gagner par plus que le spread
+                return "won" if game_diff > spread_value else "lost"
+            else:
+                # J2 doit gagner par plus que le spread (game_diff inversé)
+                return "won" if (-game_diff) > spread_value else "lost"
 
     return "pending"
 
 
 def run():
-    """Point d'entrée principal de la vérification."""
     pending = load_pending()
     if not pending:
         print("  ℹ Aucun pronostic en attente.")
@@ -74,7 +115,6 @@ def run():
     updated = False
     completed_sessions = set()
 
-    # ── Récupérer les scores uniquement pour les ligues concernées ──
     league_keys = get_league_keys_with_pending(pending)
     if league_keys:
         print(f"  📡 Récupération scores pour : {', '.join(league_keys)}")
@@ -82,14 +122,12 @@ def run():
     else:
         scores_by_id = {}
 
-    # ── Vérifier chaque pronostic en attente ─────────────────────
     for p in pending:
         if p.get("result") not in ("pending", None):
             continue
 
         created = datetime.fromisoformat(p["created_at"].replace("Z", "+00:00"))
 
-        # Timeout de sécurité
         if now - created > timeout:
             p["result"] = "unverifiable"
             p["verified_at"] = now.isoformat()
@@ -98,7 +136,6 @@ def run():
             print(f"  ⏰ Timeout : {p['match']['home_team']} vs {p['match']['away_team']}")
             continue
 
-        # Recherche par match_id
         match_id = p.get("match", {}).get("match_id", "")
         score_data = scores_by_id.get(match_id)
 
@@ -117,7 +154,6 @@ def run():
         print("  ℹ Aucun nouveau résultat.")
         return
 
-    # ── Mettre à jour l'historique ──────────────────────────────
     history = load_history()
     pending_map = {p["id"]: p for p in pending}
     for hp in history.get("predictions", []):
@@ -127,7 +163,6 @@ def run():
             hp["verified_at"] = updated_p["verified_at"]
     save_history(history)
 
-    # ── Vérifier les sessions complètes ────────────────────────
     for sid in completed_sessions:
         session_preds = [p for p in pending if p["session_id"] == sid]
         if not session_preds:
@@ -151,7 +186,6 @@ def run():
         send(msg)
         print(f"  📊 Récap session {session['type']} envoyé")
 
-    # ── Nettoyer le pending (supprimer les résolus) ────────────
     remaining = [p for p in pending if p.get("result") in ("pending", None)]
     save_pending(remaining)
     print(f"  ✓ {len(pending) - len(remaining)} pronostics résolus, "
