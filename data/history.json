@@ -883,6 +883,58 @@
       "explanation": "Ugo Humbert a un style de jeu qui convient bien au gazon et devrait gagner contre Zizou Bergs avec un handicap de jeux intéressant.",
       "result": "pending",
       "verified_at": null
+    },
+    {
+      "id": "f80488e0-ce66-4494-be2c-66d2fa7dba4e",
+      "session_id": "85936599-680f-4cf3-809b-86933ccab87f",
+      "session_type": "evening",
+      "created_at": "2026-06-30T18:58:57.930523+00:00",
+      "match": {
+        "home_team": "Serena Williams",
+        "away_team": "Maya Joint",
+        "commence_time": "2026-06-30T16:30:00Z",
+        "league": "Wimbledon Femmes (WTA)",
+        "league_key": "tennis_wta_wimbledon",
+        "match_id": "afe1b515efa9da4c9497f95d6e66505e"
+      },
+      "selection": {
+        "market_key": "h2h",
+        "description": "Victoire de Serena Williams",
+        "outcome_name": "Serena Williams"
+      },
+      "odds": 2.15,
+      "bookmaker": "Bookmaker",
+      "category": "ULTRA SAFE",
+      "expected_value": 6.0,
+      "explanation": "Serena Williams est une joueuse expérimentée avec un excellent service et une bonne forme récente, ce qui lui donne un avantage sur Maya Joint.",
+      "result": "pending",
+      "verified_at": null
+    },
+    {
+      "id": "12610482-06d5-4273-8f61-fbc297490374",
+      "session_id": "85936599-680f-4cf3-809b-86933ccab87f",
+      "session_type": "evening",
+      "created_at": "2026-06-30T18:58:57.930523+00:00",
+      "match": {
+        "home_team": "Polina Kudermetova",
+        "away_team": "Liudmila Samsonova",
+        "commence_time": "2026-06-30T17:00:00Z",
+        "league": "Wimbledon Femmes (WTA)",
+        "league_key": "tennis_wta_wimbledon",
+        "match_id": "648cb18ce359450c85a364ba4d389935"
+      },
+      "selection": {
+        "market_key": "h2h",
+        "description": "Victoire de Liudmila Samsonova",
+        "outcome_name": "Liudmila Samsonova"
+      },
+      "odds": 1.6,
+      "bookmaker": "Bookmaker",
+      "category": "VALEUR",
+      "expected_value": 8.5,
+      "explanation": "Liudmila Samsonova a un jeu de base solide et une bonne forme récente, ce qui lui donne une chance de battre Polina Kudermetova à une cote intéressante.",
+      "result": "pending",
+      "verified_at": null
     }
   ],
   "sessions": []
