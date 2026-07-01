@@ -310,5 +310,31 @@
     "explanation": "Liudmila Samsonova a un jeu de base solide et une bonne forme récente, ce qui lui donne une chance de battre Polina Kudermetova à une cote intéressante.",
     "result": "pending",
     "verified_at": null
+  },
+  {
+    "id": "b4b17d40-ae11-40eb-990f-3f26d39bd6f5",
+    "session_id": "836ba387-1d03-41b6-b174-5611cbb7275b",
+    "session_type": "morning",
+    "created_at": "2026-07-01T12:13:02.638346+00:00",
+    "match": {
+      "home_team": "Shintaro Mochizuki",
+      "away_team": "Ethan Quinn",
+      "commence_time": "2026-07-01T13:20:00Z",
+      "league": "Wimbledon Hommes (ATP)",
+      "league_key": "tennis_atp_wimbledon",
+      "match_id": "2c5814f4000161cebfb97c1313c1dcf1"
+    },
+    "selection": {
+      "market_key": "h2h",
+      "description": "Victoire Ethan Quinn",
+      "outcome_name": "Ethan Quinn"
+    },
+    "odds": 1.4,
+    "bookmaker": "Bookmaker",
+    "category": "ULTRA SAFE",
+    "expected_value": 10.0,
+    "explanation": "Ethan Quinn a une forte forme récente sur gazon et affronte un adversaire moins expérimenté.",
+    "result": "pending",
+    "verified_at": null
   }
 ]
