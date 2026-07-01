@@ -961,6 +961,32 @@
       "explanation": "Ethan Quinn a une forte forme récente sur gazon et affronte un adversaire moins expérimenté.",
       "result": "pending",
       "verified_at": null
+    },
+    {
+      "id": "42f2940e-ec04-43c0-a598-20d27e58da6a",
+      "session_id": "8f95a636-30fa-4ad5-9b0c-1a6c48c3de33",
+      "session_type": "evening",
+      "created_at": "2026-07-01T19:00:44.099381+00:00",
+      "match": {
+        "home_team": "Stefanos Tsitsipas",
+        "away_team": "Novak Djokovic",
+        "commence_time": "2026-07-01T17:15:00Z",
+        "league": "Wimbledon Hommes (ATP)",
+        "league_key": "tennis_atp_wimbledon",
+        "match_id": "f862917ef3b7e4a9fe68430ad34b25c4"
+      },
+      "selection": {
+        "market_key": "spreads",
+        "description": "Novak Djokovic -4.5 jeux",
+        "outcome_name": "Novak Djokovic"
+      },
+      "odds": 1.99,
+      "bookmaker": "Bookmaker",
+      "category": "OPPORTUNISTE",
+      "expected_value": 4.8,
+      "explanation": "Novak Djokovic est un joueur exceptionnel qui devrait gagner avec un handicap de jeux contre Stefanos Tsitsipas.",
+      "result": "pending",
+      "verified_at": null
     }
   ],
   "sessions": []
