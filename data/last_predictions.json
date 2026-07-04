@@ -1,53 +1,53 @@
 [
   {
-    "id": "d647eb82-eefd-4e90-8657-f7fab7255e3d",
-    "session_id": "5f508fab-9ac8-4dec-93e7-0219138a4d52",
-    "session_type": "evening",
-    "created_at": "2026-07-03T18:15:32.987736+00:00",
+    "id": "09f8c7d2-1d25-4f48-b695-d24a79a8cd0c",
+    "session_id": "63d34f4f-2453-4d1a-8751-69d27d53ce7f",
+    "session_type": "morning",
+    "created_at": "2026-07-04T10:57:14.393756+00:00",
     "match": {
-      "home_team": "Nikola Bartunkova",
-      "away_team": "Barbora Krejcikova",
-      "commence_time": "2026-07-03T16:00:00Z",
-      "league": "Wimbledon Femmes (WTA)",
-      "league_key": "tennis_wta_wimbledon",
-      "match_id": "20f9b1ff43b8872385d06fbaea2eb2c8"
+      "home_team": "Karen Khachanov",
+      "away_team": "Flavio Cobolli",
+      "commence_time": "2026-07-04T11:48:00Z",
+      "league": "Wimbledon Hommes (ATP)",
+      "league_key": "tennis_atp_wimbledon",
+      "match_id": "7524184c36ede122c2c1cc353af1b2d3"
     },
     "selection": {
       "market_key": "h2h",
-      "description": "Victoire de Barbora Krejcikova",
-      "outcome_name": "Barbora Krejcikova"
+      "description": "Victoire Karen Khachanov",
+      "outcome_name": "Karen Khachanov"
     },
-    "odds": 1.59,
+    "odds": 1.67,
     "bookmaker": "Bookmaker",
     "category": "ULTRA SAFE",
-    "expected_value": 10.1,
-    "explanation": "Barbora Krejcikova est une joueuse expérimentée sur gazon, avec une bonne forme récente, ce qui la rend favorite pour gagner contre Nikola Bartunkova.",
+    "expected_value": 8,
+    "explanation": "Karen Khachanov a une bonne forme récente sur gazon et Flavio Cobolli est moins expérimenté.",
     "result": "pending",
     "verified_at": null
   },
   {
-    "id": "4427b28d-b067-4c43-aba1-ca35dc1df03b",
-    "session_id": "5f508fab-9ac8-4dec-93e7-0219138a4d52",
-    "session_type": "evening",
-    "created_at": "2026-07-03T18:15:32.987736+00:00",
+    "id": "e0d45641-397d-4463-85fe-022ad671fd92",
+    "session_id": "63d34f4f-2453-4d1a-8751-69d27d53ce7f",
+    "session_type": "morning",
+    "created_at": "2026-07-04T10:57:14.393756+00:00",
     "match": {
-      "home_team": "Nikola Bartunkova",
-      "away_team": "Barbora Krejcikova",
-      "commence_time": "2026-07-03T16:00:00Z",
+      "home_team": "Jasmine Paolini",
+      "away_team": "Maria Sakkari",
+      "commence_time": "2026-07-04T11:48:00Z",
       "league": "Wimbledon Femmes (WTA)",
       "league_key": "tennis_wta_wimbledon",
-      "match_id": "20f9b1ff43b8872385d06fbaea2eb2c8"
+      "match_id": "d7d65cec6590ae691bf6dafc68b0bd01"
     },
     "selection": {
-      "market_key": "totals",
-      "description": "Moins de jeux",
-      "outcome_name": "Under"
+      "market_key": "h2h",
+      "description": "Victoire Jasmine Paolini",
+      "outcome_name": "Jasmine Paolini"
     },
-    "odds": 2.04,
+    "odds": 1.85,
     "bookmaker": "Bookmaker",
-    "category": "OPPORTUNISTE",
-    "expected_value": 6.2,
-    "explanation": "Les deux joueuses ont un style de jeu agressif, ce qui pourrait conduire à un match avec moins de jeux que la moyenne.",
+    "category": "ULTRA SAFE",
+    "expected_value": 7,
+    "explanation": "Jasmine Paolini a une bonne forme récente et Maria Sakkari a des difficultés sur gazon.",
     "result": "pending",
     "verified_at": null
   }
