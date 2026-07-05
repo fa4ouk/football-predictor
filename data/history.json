@@ -1247,6 +1247,84 @@
       "explanation": "Matteo Berrettini est un excellent joueur sur gazon et Grigor Dimitrov a des difficultés à gérer son service.",
       "result": "pending",
       "verified_at": null
+    },
+    {
+      "id": "7dd56cdd-2fd6-486d-bc79-4d2f646c0e77",
+      "session_id": "3bcc72ac-e983-466b-b1ca-c2f1bcc551aa",
+      "session_type": "morning",
+      "created_at": "2026-07-05T11:08:01.574406+00:00",
+      "match": {
+        "home_team": "Jessica Pegula",
+        "away_team": "Iva Jović",
+        "commence_time": "2026-07-05T12:00:00Z",
+        "league": "Wimbledon Femmes (WTA)",
+        "league_key": "tennis_wta_wimbledon",
+        "match_id": "b3d71ef368ca8a3172673e081f7fdee3"
+      },
+      "selection": {
+        "market_key": "h2h",
+        "description": "Victoire de Jessica Pegula",
+        "outcome_name": "Jessica Pegula"
+      },
+      "odds": 1.45,
+      "bookmaker": "Bookmaker",
+      "category": "ULTRA SAFE",
+      "expected_value": 10,
+      "explanation": "Jessica Pegula est en forme sur gazon et a une nette supériorité sur Iva Jović, ce qui fait d'elle une valeur sûre pour ce match.",
+      "result": "pending",
+      "verified_at": null
+    },
+    {
+      "id": "f20157a2-85b9-4860-b7af-ce8a5f3e294d",
+      "session_id": "3bcc72ac-e983-466b-b1ca-c2f1bcc551aa",
+      "session_type": "morning",
+      "created_at": "2026-07-05T11:08:01.574406+00:00",
+      "match": {
+        "home_team": "Aryna Sabalenka",
+        "away_team": "Naomi Osaka",
+        "commence_time": "2026-07-05T14:30:00Z",
+        "league": "Wimbledon Femmes (WTA)",
+        "league_key": "tennis_wta_wimbledon",
+        "match_id": "5fca44be8e4f4be20860b8cd4695fd42"
+      },
+      "selection": {
+        "market_key": "h2h",
+        "description": "Victoire d'Aryna Sabalenka",
+        "outcome_name": "Aryna Sabalenka"
+      },
+      "odds": 1.46,
+      "bookmaker": "Bookmaker",
+      "category": "ULTRA SAFE",
+      "expected_value": 8,
+      "explanation": "Aryna Sabalenka a montré une excellente forme récente sur gazon et devrait avoir le dessus sur Naomi Osaka.",
+      "result": "pending",
+      "verified_at": null
+    },
+    {
+      "id": "ade11981-f219-4b84-a97f-2e61d61c24d1",
+      "session_id": "3bcc72ac-e983-466b-b1ca-c2f1bcc551aa",
+      "session_type": "morning",
+      "created_at": "2026-07-05T11:08:01.574406+00:00",
+      "match": {
+        "home_team": "Belinda Bencic",
+        "away_team": "Coco Gauff",
+        "commence_time": "2026-07-05T16:00:00Z",
+        "league": "Wimbledon Femmes (WTA)",
+        "league_key": "tennis_wta_wimbledon",
+        "match_id": "0dde211a4505e155ef36e15f1bf05a55"
+      },
+      "selection": {
+        "market_key": "h2h",
+        "description": "Victoire de Coco Gauff",
+        "outcome_name": "Coco Gauff"
+      },
+      "odds": 1.96,
+      "bookmaker": "Bookmaker",
+      "category": "VALEUR",
+      "expected_value": 6,
+      "explanation": "Coco Gauff a montré une bonne forme récente et pourrait créer une surprise contre Belinda Bencic, ce qui en fait une valeur intéressante.",
+      "result": "pending",
+      "verified_at": null
     }
   ],
   "sessions": []
