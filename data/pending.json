@@ -700,5 +700,57 @@
     "explanation": "Coco Gauff a montré une bonne forme récente et pourrait créer une surprise contre Belinda Bencic, ce qui en fait une valeur intéressante.",
     "result": "pending",
     "verified_at": null
+  },
+  {
+    "id": "88297aad-e03e-49c0-851d-b4903ec1d72b",
+    "session_id": "dd96935f-b291-42da-af49-514d5b193fee",
+    "session_type": "evening",
+    "created_at": "2026-07-05T18:07:10.851042+00:00",
+    "match": {
+      "home_team": "Aryna Sabalenka",
+      "away_team": "Naomi Osaka",
+      "commence_time": "2026-07-05T15:23:00Z",
+      "league": "Wimbledon Femmes (WTA)",
+      "league_key": "tennis_wta_wimbledon",
+      "match_id": "5fca44be8e4f4be20860b8cd4695fd42"
+    },
+    "selection": {
+      "market_key": "h2h",
+      "description": "Victoire d'Aryna Sabalenka",
+      "outcome_name": "Aryna Sabalenka"
+    },
+    "odds": 1.47,
+    "bookmaker": "Bookmaker",
+    "category": "ULTRA SAFE",
+    "expected_value": 8.0,
+    "explanation": "Aryna Sabalenka est une joueuse solide sur gazon et devrait gagner contre Naomi Osaka.",
+    "result": "pending",
+    "verified_at": null
+  },
+  {
+    "id": "e0f36836-16b3-4ffc-b992-d06fb021a9a4",
+    "session_id": "dd96935f-b291-42da-af49-514d5b193fee",
+    "session_type": "evening",
+    "created_at": "2026-07-05T18:07:10.851042+00:00",
+    "match": {
+      "home_team": "Belinda Bencic",
+      "away_team": "Coco Gauff",
+      "commence_time": "2026-07-05T16:26:00Z",
+      "league": "Wimbledon Femmes (WTA)",
+      "league_key": "tennis_wta_wimbledon",
+      "match_id": "0dde211a4505e155ef36e15f1bf05a55"
+    },
+    "selection": {
+      "market_key": "h2h",
+      "description": "Victoire de Coco Gauff",
+      "outcome_name": "Coco Gauff"
+    },
+    "odds": 1.97,
+    "bookmaker": "Bookmaker",
+    "category": "VALEUR",
+    "expected_value": 6.0,
+    "explanation": "Coco Gauff a une bonne forme récente et devrait gagner contre Belinda Bencic.",
+    "result": "pending",
+    "verified_at": null
   }
 ]
