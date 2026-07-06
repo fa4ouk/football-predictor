@@ -1,53 +1,79 @@
 [
   {
-    "id": "88297aad-e03e-49c0-851d-b4903ec1d72b",
-    "session_id": "dd96935f-b291-42da-af49-514d5b193fee",
-    "session_type": "evening",
-    "created_at": "2026-07-05T18:07:10.851042+00:00",
+    "id": "45f14381-6feb-40eb-b208-e8d45e7671c4",
+    "session_id": "d0a0af92-ba9a-4e11-95c8-4e0629237ca8",
+    "session_type": "morning",
+    "created_at": "2026-07-06T12:54:34.742211+00:00",
     "match": {
-      "home_team": "Aryna Sabalenka",
-      "away_team": "Naomi Osaka",
-      "commence_time": "2026-07-05T15:23:00Z",
-      "league": "Wimbledon Femmes (WTA)",
-      "league_key": "tennis_wta_wimbledon",
-      "match_id": "5fca44be8e4f4be20860b8cd4695fd42"
+      "home_team": "Grigor Dimitrov",
+      "away_team": "Arthur Fery",
+      "commence_time": "2026-07-06T14:21:00Z",
+      "league": "Wimbledon Hommes (ATP)",
+      "league_key": "tennis_atp_wimbledon",
+      "match_id": "deb46b10eff833cb32c724e825c99114"
     },
     "selection": {
       "market_key": "h2h",
-      "description": "Victoire d'Aryna Sabalenka",
-      "outcome_name": "Aryna Sabalenka"
+      "description": "Victoire Grigor Dimitrov",
+      "outcome_name": "Grigor Dimitrov"
     },
-    "odds": 1.47,
+    "odds": 1.48,
     "bookmaker": "Bookmaker",
     "category": "ULTRA SAFE",
-    "expected_value": 8.0,
-    "explanation": "Aryna Sabalenka est une joueuse solide sur gazon et devrait gagner contre Naomi Osaka.",
+    "expected_value": 10.0,
+    "explanation": "Dimitrov a une forte expérience sur gazon et Fery est un joueur moins expérimenté, ce qui donne une forte probabilité de victoire à Dimitrov.",
     "result": "pending",
     "verified_at": null
   },
   {
-    "id": "e0f36836-16b3-4ffc-b992-d06fb021a9a4",
-    "session_id": "dd96935f-b291-42da-af49-514d5b193fee",
-    "session_type": "evening",
-    "created_at": "2026-07-05T18:07:10.851042+00:00",
+    "id": "8f7351c9-f02c-4390-b8fc-08201dbffa8f",
+    "session_id": "d0a0af92-ba9a-4e11-95c8-4e0629237ca8",
+    "session_type": "morning",
+    "created_at": "2026-07-06T12:54:34.742211+00:00",
     "match": {
-      "home_team": "Belinda Bencic",
-      "away_team": "Coco Gauff",
-      "commence_time": "2026-07-05T16:26:00Z",
-      "league": "Wimbledon Femmes (WTA)",
-      "league_key": "tennis_wta_wimbledon",
-      "match_id": "0dde211a4505e155ef36e15f1bf05a55"
+      "home_team": "Taylor Fritz",
+      "away_team": "Alexander Bublik",
+      "commence_time": "2026-07-06T15:48:00Z",
+      "league": "Wimbledon Hommes (ATP)",
+      "league_key": "tennis_atp_wimbledon",
+      "match_id": "a66a7b940b5acab677add3367c1bef0e"
     },
     "selection": {
       "market_key": "h2h",
-      "description": "Victoire de Coco Gauff",
-      "outcome_name": "Coco Gauff"
+      "description": "Victoire Taylor Fritz",
+      "outcome_name": "Taylor Fritz"
     },
-    "odds": 1.97,
+    "odds": 1.51,
     "bookmaker": "Bookmaker",
-    "category": "VALEUR",
+    "category": "ULTRA SAFE",
+    "expected_value": 8.5,
+    "explanation": "Fritz a une bonne forme récente sur gazon et Bublik a des difficultés à gérer les services puissants, ce qui donne une forte probabilité de victoire à Fritz.",
+    "result": "pending",
+    "verified_at": null
+  },
+  {
+    "id": "a03a7e95-400d-496b-853b-46bba7f77aac",
+    "session_id": "d0a0af92-ba9a-4e11-95c8-4e0629237ca8",
+    "session_type": "morning",
+    "created_at": "2026-07-06T12:54:34.742211+00:00",
+    "match": {
+      "home_team": "Taylor Fritz",
+      "away_team": "Alexander Bublik",
+      "commence_time": "2026-07-06T15:48:00Z",
+      "league": "Wimbledon Hommes (ATP)",
+      "league_key": "tennis_atp_wimbledon",
+      "match_id": "a66a7b940b5acab677add3367c1bef0e"
+    },
+    "selection": {
+      "market_key": "totals",
+      "description": "Moins de 40.5 jeux",
+      "outcome_name": "Under"
+    },
+    "odds": 2.2,
+    "bookmaker": "Bookmaker",
+    "category": "OPPORTUNISTE",
     "expected_value": 6.0,
-    "explanation": "Coco Gauff a une bonne forme récente et devrait gagner contre Belinda Bencic.",
+    "explanation": "Les deux joueurs ont un style de jeu agressif et rapide, ce qui devrait conduire à un match avec moins de jeux.",
     "result": "pending",
     "verified_at": null
   }
